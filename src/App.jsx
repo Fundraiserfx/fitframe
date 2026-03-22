@@ -148,13 +148,10 @@ export default function FitnessApp() {
       ? `\n\nToday's meals: ${todayMeals.map(m => m.name).join(", ")}. Totals: ${totals.cal} cal, ${totals.protein}g protein, ${totals.carbs}g carbs, ${totals.fat}g fat.`
       : "\n\nNo meals logged yet today.";
     try {
-      const res = await fetch("https://api.anthropic.com/v1/messages", {
+      const res = await fetch("/api/chat", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
-          "x-api-key": ANTHROPIC_API_KEY,
-          "anthropic-version": "2023-06-01",
-          "anthropic-dangerous-direct-browser-access": "true"
         },
         body: JSON.stringify({
           model: "claude-sonnet-4-6",
